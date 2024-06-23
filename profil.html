@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Профиль</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&amp;subset=cyrillic">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css?ver=5.0.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='art_net_theme-material-icons-css' href='https://fonts.googleapis.com/icon?family=Material+Icons&#038;ver=5.0.3' type='text/css' media='all' />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/ant006_header.css">
+    <link rel="stylesheet" href="./css/ant012_welcome.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <style>
+        .btn-primary {
+            background-color: black;
+            border-color: black;
+        }
+        
+        article section div {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        /* Стили для окна помощника */
+        #chat-window {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            transition: height 0.3s ease-in-out; /* Добавлено для плавной анимации */
+        }
+
+        #chat-header {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        #chat-input {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-input input {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Стили для выпадающего меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+        }
+
+        .dropdown-content button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Стили для кнопки "Часто задаваемые вопросы" */
+        #faqButton {
+            width: 100%;
+            margin-right: 20px; /* Добавляет отступ справа, равный отступу окна помощника */
+        }
+
+        /* Стили для кнопки сворачивания/разворачивания */
+        #toggleButton {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <header id="ant-section__ant006_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-6 col-6  ant006_header-logo">
+                    <a href="index1.html" title=>NAIL SERVICE</a>
+                </div>
+                <div class="col-lg-9 col-sm-6 col-md-12 col-6 ant006_header-menu-wrap">
+                    <div class="ant006_header-toggle">
+                        <i class="material-icons">menu</i>
+                    </div>
+                    <nav class="ant006_header-container">
+                        <ul class="menu">
+                            <li><a href="index1.html">Главная</a></li>
+                            <li class="menu-item"><a href="yslygi1.html">Услуги</a></li>
+                            <li class="menu-item"><a href="onas1.html">О нас</a></li>
+                            <li class="menu-item"><a href="raboti1.html">Работы</a></li>
+                            <li class="menu-item"><a href="profil.html">Записаться</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Запись на услугу</h2>
+        <form id="appointmentForm">
+            <div class="form-group">
+                <label for="fullName">ФИО</label>
+                <input type="text" class="form-control" id="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Номер телефона</label>
+                <input type="tel" class="form-control" id="phoneNumber" pattern="^\+7\d{10}$" required>
+                <small class="form-text text-muted">Формат номера: +7XXXXXXXXXX</small>
+            </div>
+            <div class="form-group">
+                <label for="procedure">Процедура</label>
+                <select class="form-control" id="procedure" required>
+                    <option value="Маникюр">Маникюр</option>
+                    <option value="Педикюр">Педикюр</option>
+                    <option value="Наращивание ногтей">Наращивание ногтей</option>
+                    <option value="Укрепление ногтей">Укрепление ногтей</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="appointmentDate">Дата</label>
+                <input type="text" class="form-control" id="appointmentDate" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Записаться</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentModalLabel">Запись на услугу</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы записаны!</p>
+                    <p><strong>ФИО:</strong> <span id="modalFullName"></span></p>
+                    <p><strong>Номер телефона:</strong> <span id="modalPhoneNumber"></span></p>
+                    <p><strong>Процедура:</strong> <span id="modalProcedure"></span></p>
+                    <p><strong>Дата:</strong> <span id="modalAppointmentDate"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-window">
+        <div id="chat-header">
+            <span>Помощник</span>
+            <button id="toggleButton">&#8597;</button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input">
+            <input type="text" placeholder="Введите сообщение..." id="chat-input-field">
+            <div class="dropdown">
+                <button class="dropbtn" id="faqButton">Часто задаваемые вопросы</button>
+                <div class="dropdown-content">
+                    <button id="chat-price-button">Прайс-лист</button>
+                    <button id="chat-address-button">Адрес</button>
+                    <button id="chat-phone-button">Номер телефона</button>
+                    <button id="chat-examples-button">Примеры работ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ru.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#appointmentDate').datepicker({
+                format: 'dd.mm.yyyy',
+                language: 'ru',
+                startDate: new Date(),
+                autoclose: true
+            });
+        });
+
+        document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const procedure = document.getElementById('procedure').value;
+            const appointmentDate = document.getElementById('appointmentDate').value;
+
+            // Обновить содержимое модального окна
+            $('#modalFullName').text(fullName);
+            $('#modalPhoneNumber').text(phoneNumber);
+            $('#modalProcedure').text(procedure);
+            $('#modalAppointmentDate').text(appointmentDate);
+
+            // Показать модальное окно
+            $('#appointmentModal').modal('show');
+
+            // Очистить поля формы после закрытия модального окна
+            $('#appointmentModal').on('hidden.bs.modal', function () {
+                document.getElementById('fullName').value = '';
+                document.getElementById('phoneNumber').value = '';
+                document.getElementById('procedure').value = '';
+                document.getElementById('appointmentDate').value = '';
+            });
+        });
+    </script>
+         <script>
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInputField = document.getElementById('chat-input-field');
+            const chatPriceButton = document.getElementById('chat-price-button');
+            const chatAddressButton = document.getElementById('chat-address-button');
+            const chatPhoneButton = document.getElementById('chat-phone-button');
+            const chatExamplesButton = document.getElementById('chat-examples-button');
+            const faqButton = document.getElementById('faqButton');
+            const chatWindow = document.getElementById('chat-window');
+            const toggleButton = document.getElementById('toggleButton');
+    
+            // Получаем ширину окна помощника и применяем ее к кнопке "Часто задаваемые вопросы"
+            const windowWidth = chatWindow.offsetWidth - 20; // Вычитаем отступ справа из ширины окна
+            faqButton.style.width = `${windowWidth}px`;
+    
+            // Обработчик события нажатия клавиши Enter в поле ввода сообщения
+            chatInputField.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+    
+            chatPriceButton.addEventListener('click', () => sendPredefinedMessage('Прайс-лист для услуг'));
+            chatAddressButton.addEventListener('click', () => sendPredefinedMessage('Адрес организации'));
+            chatPhoneButton.addEventListener('click', () => sendPredefinedMessage('Номер телефона организации'));
+            chatExamplesButton.addEventListener('click', () => sendPredefinedMessage('Примеры работ'));
+    
+            // Обработчик события нажатия кнопки сворачивания/разворачивания
+            toggleButton.addEventListener('click', toggleChatWindow);
+    
+            function sendMessage() {
+                const message = chatInputField.value.trim();
+                if (message) {
+                    addMessageToChat('Вы', message);
+                    chatInputField.value = '';
+                    handleMessage(message);
+                }
+            }
+    
+            function sendPredefinedMessage(message) {
+                addMessageToChat('Вы', message);
+                handleMessage(message);
+            }
+    
+            function handleMessage(message) {
+                let response;
+                switch (message) {
+                    case 'Прайс-лист для услуг':
+                        response = 'Вот наш прайс-лист:\n\nНаращивание: 1700 руб.\nУкрепление: 400 руб.\nПедикюр: 1000 руб.\n...';
+                        break;
+                    case 'Адрес организации':
+                        response = 'Наш адрес: г. Красноярск, ул. Высотная, 2';
+                        break;
+                    case 'Номер телефона организации':
+                        response = 'Наш номер телефона: +7 (905) 974-84-51';
+                        break;
+                    case 'Примеры работ':
+                        response = 'Вы можете посмотреть примеры наших работ на вкадке "Работы"';
+                        break;
+                    default:
+                        response = 'К сожалению, я не могу ответить на ваш вопрос. Пожалуйста, выберите один из предложенных вариантов или задайте свой вопрос.';
+                        handleCustomMessage(message);
+                }
+                addMessageToChat('Помощник', response);
+            }
+    
+            function handleCustomMessage(message) {
+                // Здесь вы можете добавить логику для обработки пользовательских сообщений
+                // и генерации соответствующих ответов
+                console.log('Пользовательское сообщение:', message);
+            }
+    
+            function addMessageToChat(sender, message) {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = `${sender}: ${message}`;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+    
+            // Функция для сворачивания/разворачивания окна помощника
+            function toggleChatWindow() {
+                const chatWindow = document.getElementById('chat-window');
+                const isCollapsed = chatWindow.style.height === '50px';
+    
+                if (isCollapsed) {
+                    chatWindow.style.height = '400px'; // Разворачиваем окно
+                    toggleButton.textContent = 'x'; // Изменяем иконку кнопки
+                } else {
+                    chatWindow.style.height = '50px'; // Сворачиваем окно
+                    toggleButton.textContent = 'x'; // Изменяем иконку кнопки
+                }
+            }
+        </script>
+    
+    
+
+</body>
+</html>
